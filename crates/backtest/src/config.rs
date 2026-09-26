@@ -134,7 +134,7 @@ pub struct BacktestEngineConfig {
     pub controller: Option<ImportableControllerConfig>,
     /// The configuration for streaming to feather files.
     #[cfg(feature = "streaming")]
-    pub streaming: Option<StreamingConfig>,
+    pub streaming: Option<Vec<StreamingConfig>>,
     /// Configurations for existing data catalogs.
     #[cfg(feature = "streaming")]
     #[builder(default)]
@@ -225,7 +225,7 @@ impl NautilusKernelConfig for BacktestEngineConfig {
     }
 
     #[cfg(feature = "streaming")]
-    fn streaming(&self) -> Option<StreamingConfig> {
+    fn streaming(&self) -> Option<Vec<StreamingConfig>> {
         self.streaming.clone()
     }
 
